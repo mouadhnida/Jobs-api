@@ -1,9 +1,8 @@
 require('dotenv').config();
 require('express-async-errors');
 
-
-
-
+const helmet = require('helmet');
+const xss = require('xss-clean');
 
 const express = require('express');
 const app = express();
@@ -16,6 +15,9 @@ const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
 app.use(express.json());
+app.use(helmet());
+
+app.use(xss());
 
 
 
