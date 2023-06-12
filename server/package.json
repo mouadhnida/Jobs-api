@@ -20,7 +20,7 @@
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^5.6.0",
-    "mongoose": "^5.13.2",
+    "mongoose": "^7.2.3",
     "rate-limiter": "^0.2.0",
     "swagger-ui-express": "^4.1.6",
     "xss-clean": "^0.1.1",
