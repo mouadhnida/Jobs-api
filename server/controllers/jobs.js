@@ -162,4 +162,5 @@ module.exports = {
   createJob,
   updateJob,
   deleteJob,
+  showStats
 };
