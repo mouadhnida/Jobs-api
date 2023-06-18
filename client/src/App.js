@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import {Landing, Error, Register} from "./pages";
-import {AllJobs, Stats, AddJob, Profile, Nav} from "./pages/dashboard"
+import {AllJobs, Stats, AddJob, Profile, SharedLayout} from "./pages/dashboard"
 
 function App() {
     return (
         <>
         <Routes>
-            <Route path="/" element={<Nav/>}>
+            <Route path="/" element={<SharedLayout/>}>
                 <Route index element={<Stats/>}/>
                 <Route path="all-jobs" element={<AllJobs/>}/>
                 <Route path="add-job" element={<AddJob/>}/>

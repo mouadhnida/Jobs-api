@@ -2,7 +2,20 @@ import React from 'react'
 
 function Stats() {
   return (
-    <div>Stats</div>
+    <>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div>
+    <div className='relative'>Stats</div></>
   )
 }
 
