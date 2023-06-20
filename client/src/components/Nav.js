@@ -4,7 +4,7 @@ import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 function Nav() {
   return (
     <div className=" fixed z-50 col-span-12 flex h-24 w-full items-center justify-between bg-white px-8">
-      <div className="flex items-center text-2xl font-bold font-Inter">
+      <div className="flex items-center font-Inter text-2xl font-bold">
         <span className="w-12 rounded-lg bg-main text-center text-5xl text-white">
           J
         </span>

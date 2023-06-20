@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
 
-html, body {
-    overflow-x: hidden;
-    font-family: 'Cabin', sans-serif;
+html,
+body {
+  overflow-x: hidden;
+  font-family: "Cabin", sans-serif;
 }
