@@ -1,5 +1,5 @@
 import React from "react";
-import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
+import { FaUserCircle, FaCaretDown } from "react-icons/fa";
 
 function Nav() {
   return (
