@@ -41,45 +41,28 @@ export default function Jobstatus() {
   ];
 
   const [res, error] = useAxios({
-    url: "/jobs",
+    url: "/jobs/stats",
     method: "get",
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDg5ZDJjYjlhMjgyNDE1OGFhODUwNjgiLCJuYW1lIjoiaG5pZGEiLCJpYXQiOjE2ODczMDI5MzQsImV4cCI6MTY4OTg5NDkzNH0.1Hm91dCJDAn73CIOAqHZWEHnzGIZ1zXYyRU9FGqbutA",
     },
-    params: { limit: 1000 },
   });
 
   useEffect(() => {
     if (res && res.data) {
-      const newStatus = { pending: 0, interview: 0, declined: 0 };
-      res.data.jobs.forEach((job) => {
-        switch (job.status) {
-          case "pending":
-            newStatus.pending += 1;
-            break;
-          case "interview":
-            newStatus.interview += 1;
-            break;
-          case "declined":
-            newStatus.declined += 1;
-            break;
-          default:
-            break;
-        }
-      });
-      setStatus(newStatus);
+      setStatus(res.data?.defaultStats);
     }
   }, [res]);
 
   return (
-    <ul className="relative flex w-full justify-center gap-4">
+    <ul className="relative flex w-full flex-wrap justify-center gap-4 px-4">
       {data.map((item, i) => (
         <li
           key={i}
-          className={`flex h-44 w-[418px] flex-col flex-wrap items-center justify-center gap-3 rounded border-b-4 ${item.border} bg-white `}
+          className={`flex h-44 w-[418px] min-w-[50px] flex-col flex-wrap items-center justify-center gap-3 rounded border-b-4 ${item.border} bg-white `}
         >
-          <div className={`flex w-full justify-between px-8 ${item.color} `}>
+          <div className={`flex w-full justify-between px-8  ${item.color} `}>
             <h1 className="text-5xl">{item.number}</h1>
             <div
               className={`flex h-14 w-16 items-center justify-center rounded ${item.bg}`}

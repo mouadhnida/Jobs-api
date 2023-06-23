@@ -4,7 +4,7 @@ import Chart from "../../components/Chart";
 
 function Stats() {
   return (
-    <div className="mt-7 h-full">
+    <div className="relative h-full w-[calc(100vw-250px)] pt-8 m-lg:w-full">
       <Jobstatus />
       <Chart />
     </div>
