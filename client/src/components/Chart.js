@@ -14,7 +14,7 @@ import {
 import useAxios from "../utils/useAxios";
 
 export default function Chart() {
-  // const [data, setData] = useState({});
+  const [data, setData] = useState({});
   const [barChart, setBarChart] = useState(true);
 
   const handleClick = (e) => {
@@ -22,30 +22,20 @@ export default function Chart() {
     setBarChart(!barChart);
   };
 
-  // const [res, error] = useAxios({
-  //   url: "/jobs/stats",
-  //   method: "get",
-  //   headers: {
-  //     Authorization:
-  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDg5ZDJjYjlhMjgyNDE1OGFhODUwNjgiLCJuYW1lIjoiaG5pZGEiLCJpYXQiOjE2ODczMDI5MzQsImV4cCI6MTY4OTg5NDkzNH0.1Hm91dCJDAn73CIOAqHZWEHnzGIZ1zXYyRU9FGqbutA",
-  //   },
-  // });
+  const [res] = useAxios({
+    url: "/jobs/stats",
+    method: "get",
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDg5ZDJjYjlhMjgyNDE1OGFhODUwNjgiLCJuYW1lIjoiaG5pZGEiLCJpYXQiOjE2ODczMDI5MzQsImV4cCI6MTY4OTg5NDkzNH0.1Hm91dCJDAn73CIOAqHZWEHnzGIZ1zXYyRU9FGqbutA",
+    },
+  });
 
-  // useEffect(() => {
-  //   if (res && res.data) {
-  //     console.log(res.data?.monthlyApplications);
-  //     setData(res.data?.monthlyApplications);
-  //   }
-  // }, [res]);
-
-  const data = [
-    { date: "Jun 2023", count: 2 },
-    { date: "Jul 2023", count: 0 },
-    { date: "Aug 2023", count: 20 },
-    { date: "Sep 2023", count: 13 },
-    { date: "Oct 2023", count: 24 },
-    { date: "Nov 2023", count: 9 },
-  ];
+  useEffect(() => {
+    if (res && res.data) {
+      setData(res.data?.monthlyApplications);
+    }
+  }, [res]);
 
   return (
     <div className="relative flex w-full flex-col items-center justify-around gap-10 pt-20">

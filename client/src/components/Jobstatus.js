@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 import useAxios from "../utils/useAxios";
 
@@ -40,7 +39,7 @@ export default function Jobstatus() {
     },
   ];
 
-  const [res, error] = useAxios({
+  const [res] = useAxios({
     url: "/jobs/stats",
     method: "get",
     headers: {
