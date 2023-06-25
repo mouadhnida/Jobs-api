@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [inputs, setInputs] = useState({});
   const [isLogin, setLogin] = useState(true);
-  const [user, setUser] = useState({});
-  //const [jwt, setJwt] = useState("");
+  const [user, setUser] = useState();
+  const [isLoading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -16,7 +20,26 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { name, email, password } = inputs;
+    if (!email || !password || (!isLogin && !name)) {
+      const notify = () => {
+        toast.error("Please fill out all fields", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      };
+      notify();
+      return;
+    }
+
     try {
+      setLoading(true);
       if (isLogin) {
         // Login
         const response = await axios.post("api/v1/auth/login", {
@@ -29,7 +52,6 @@ function Register() {
           secure: true,
           httpOnly: true,
         });
-        console.log(user);
       } else {
         // Register
         const response = await axios.post("api/v1/auth/register", inputs);
@@ -39,12 +61,43 @@ function Register() {
           secure: true,
           httpOnly: true,
         });
-        console.log(user);
       }
-    } catch (error) {
-      console.log(error.response?.data.msg);
+      const notify = () => {
+        toast.success("sucessful", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      };
+
+      notify();
+    } catch (err) {
+      console.log(err.response?.data.msg);
+      toast.error(err.response?.data.msg, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+  }, [user]);
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-slate-100 px-5">
@@ -76,7 +129,7 @@ function Register() {
             <label htmlFor="email">Email</label>
             <input
               onChange={handleChange}
-              type="text"
+              type="email"
               id="email"
               className="h-8 w-full rounded-md border border-slate-300 bg-slate-100 pl-2"
             />
@@ -94,8 +147,9 @@ function Register() {
             type="submit"
             className="flex h-10 w-full items-center justify-around rounded-md border bg-main text-xl text-white drop-shadow-md"
           >
-            Submit
+            {isLoading ? "Loading..." : "Submit"}
           </button>
+          <ToastContainer />
         </form>
         <p className="pt-5">
           Not a member yet ?{" "}
