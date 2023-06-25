@@ -1,15 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { UserContext } from "../App";
+
 function Register() {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [inputs, setInputs] = useState({});
   const [isLogin, setLogin] = useState(true);
-  const [user, setUser] = useState();
+  const [user, setUser] = useContext(UserContext);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 

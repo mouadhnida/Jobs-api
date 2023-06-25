@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaUserCircle, FaCaretDown } from "react-icons/fa";
 
+import { UserContext } from "../App";
+
 function Nav() {
+  const [user, setUser] = useContext(UserContext);
   return (
     <div className=" fixed z-50 col-span-12 flex h-24 w-full items-center justify-between border border-b-slate-300 bg-white px-8">
       <div className="flex items-center font-Inter text-2xl font-bold">
