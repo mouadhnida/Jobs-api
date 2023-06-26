@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
-import useAxios from "../utils/useAxios";
+import useAxios from "../hooks/useAxios";
 
 import { MdOutlinePendingActions } from "react-icons/md";
 import { VscError } from "react-icons/vsc";
@@ -12,6 +13,10 @@ export default function Jobstatus() {
     interview: 0,
     declined: 0,
   });
+
+  const [cookies] = useCookies();
+  const token = cookies.user.token;
+
   const data = [
     {
       text: "Pending Applications",
@@ -43,8 +48,7 @@ export default function Jobstatus() {
     url: "/jobs/stats",
     method: "get",
     headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDg5ZDJjYjlhMjgyNDE1OGFhODUwNjgiLCJuYW1lIjoiaG5pZGEiLCJpYXQiOjE2ODczMDI5MzQsImV4cCI6MTY4OTg5NDkzNH0.1Hm91dCJDAn73CIOAqHZWEHnzGIZ1zXYyRU9FGqbutA",
+      Authorization: `Bearer ${token}`,
     },
   });
 

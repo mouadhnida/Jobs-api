@@ -5,13 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { UserContext } from "../App";
-
 function Register() {
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const [cookies, setCookie] = useCookies(["user"]);
   const [inputs, setInputs] = useState({});
   const [isLogin, setLogin] = useState(true);
-  const [user, setUser] = useContext(UserContext);
+  const [user, setUser] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -37,11 +35,15 @@ function Register() {
         });
       };
       notify();
+
       return;
     }
 
     try {
       setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
       if (isLogin) {
         // Login
         const response = await axios.post("api/v1/auth/login", {
@@ -49,19 +51,17 @@ function Register() {
           password: inputs.password,
         });
         setUser(response.data.user);
-        setCookie("token", response.data.user.token, {
+        const userString = JSON.stringify(response.data.user);
+        setCookie("user", userString, {
           path: "/",
-          secure: true,
-          httpOnly: true,
         });
       } else {
         // Register
         const response = await axios.post("api/v1/auth/register", inputs);
         setUser(response.data.user);
-        setCookie("token", response.data.user.token, {
+        const userString = JSON.stringify(response.data.user);
+        setCookie("user", userString, {
           path: "/",
-          secure: true,
-          httpOnly: true,
         });
       }
       const notify = () => {
@@ -78,18 +78,25 @@ function Register() {
       };
 
       notify();
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     } catch (err) {
-      console.log(err.response?.data.msg);
-      toast.error(err.response?.data.msg, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      setLoading(true);
+      setTimeout(() => {
+        toast.error(err.response?.data.msg, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setLoading(false);
+      }, 2000);
     }
   };
 
@@ -98,8 +105,8 @@ function Register() {
       setTimeout(() => {
         navigate("/");
       }, 2000);
-    }
-  }, [user]);
+    } // eslint-disable-next-line
+  }, [user, cookies]);
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-slate-100 px-5">

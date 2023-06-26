@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import {
   Area,
   AreaChart,
@@ -11,11 +12,14 @@ import {
   YAxis,
 } from "recharts";
 
-import useAxios from "../utils/useAxios";
+import useAxios from "../hooks/useAxios";
 
 export default function Chart() {
   const [data, setData] = useState({});
   const [barChart, setBarChart] = useState(true);
+
+  const [cookies] = useCookies();
+  const token = cookies.user.token;
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -26,8 +30,7 @@ export default function Chart() {
     url: "/jobs/stats",
     method: "get",
     headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDg5ZDJjYjlhMjgyNDE1OGFhODUwNjgiLCJuYW1lIjoiaG5pZGEiLCJpYXQiOjE2ODczMDI5MzQsImV4cCI6MTY4OTg5NDkzNH0.1Hm91dCJDAn73CIOAqHZWEHnzGIZ1zXYyRU9FGqbutA",
+      Authorization: `Bearer ${token}`,
     },
   });
 
