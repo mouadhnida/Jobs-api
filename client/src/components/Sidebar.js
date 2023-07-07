@@ -21,7 +21,7 @@ function Sidebar() {
         return (
           <li className="group/sidebar h-1/4" key={i}>
             <Link to={li.link}>
-              <div className="flex h-full w-full  items-center pl-10 transition-all duration-500 group-hover/sidebar:bg-slate-100 group-hover/sidebar:pl-14">
+              <div className="flex h-full w-full items-center pl-10 transition-all duration-500 group-hover/sidebar:bg-slate-100 group-hover/sidebar:pl-14">
                 <div
                   className={` ${
                     isActive === true ? "text-main" : ""

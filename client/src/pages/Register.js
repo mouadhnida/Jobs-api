@@ -1,12 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
-  const [cookies, setCookie] = useCookies(["user"]);
   const [inputs, setInputs] = useState({});
   const [isLogin, setLogin] = useState(true);
   const [user, setUser] = useState(null);
@@ -46,23 +45,23 @@ function Register() {
       }, 2000);
       if (isLogin) {
         // Login
-        const response = await axios.post("api/v1/auth/login", {
+        const response = await axios.post("/auth/login", {
           email: inputs.email,
           password: inputs.password,
         });
         setUser(response.data.user);
-        const userString = JSON.stringify(response.data.user);
-        setCookie("user", userString, {
-          path: "/",
-        });
+        const token = response.data?.user.token;
+        const name = response.data?.user.name;
+        localStorage.setItem("token", token);
+        localStorage.setItem("name", name);
       } else {
         // Register
-        const response = await axios.post("api/v1/auth/register", inputs);
+        const response = await axios.post("/auth/register", inputs);
         setUser(response.data.user);
-        const userString = JSON.stringify(response.data.user);
-        setCookie("user", userString, {
-          path: "/",
-        });
+        const token = response.data?.user.token;
+        const name = response.data?.user.name;
+        localStorage.setItem("token", token);
+        localStorage.setItem("name", name);
       }
       const notify = () => {
         toast.success("sucessful", {
@@ -106,7 +105,7 @@ function Register() {
         navigate("/");
       }, 2000);
     } // eslint-disable-next-line
-  }, [user, cookies]);
+  }, [user]);
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-slate-100 px-5">
@@ -154,7 +153,7 @@ function Register() {
           </div>
           <button
             type="submit"
-            className="flex h-10 w-full items-center justify-around rounded-md border bg-main text-xl text-white drop-shadow-md"
+            className="flex h-10 w-full items-center justify-around rounded-md border bg-main text-xl text-white drop-shadow-md hover:bg-main2"
           >
             {isLoading ? "Loading..." : "Submit"}
           </button>
@@ -162,7 +161,10 @@ function Register() {
         </form>
         <p className="pt-5">
           Not a member yet ?{" "}
-          <button className="text-main" onClick={() => setLogin(!isLogin)}>
+          <button
+            className="text-main hover:text-main2"
+            onClick={() => setLogin(!isLogin)}
+          >
             {isLogin ? "Register" : "Login"}
           </button>
         </p>

@@ -23,12 +23,12 @@ function Landing() {
           Job Hub, you'll never miss a step in your career journey. Take control
           of your job search and land your dream job today.
         </p>
-        <button className="flex h-10 w-44 items-center justify-around rounded-md border bg-main text-xl text-white drop-shadow-md">
+        <button className="flex h-10 w-44 items-center justify-around rounded-md border bg-main text-xl text-white drop-shadow-md hover:bg-main2">
           <Link to="/register">Login/Register</Link>
         </button>
       </div>
-      <div className=" flex justify-center m-lg:hidden">
-        <JobHunt className=" h-auto w-2/3" />
+      <div className="flex justify-center  m-lg:hidden">
+        <JobHunt className="h-auto w-2/3 " />
       </div>
     </div>
   );

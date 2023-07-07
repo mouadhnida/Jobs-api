@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 
 import useAxios from "../hooks/useAxios";
 
@@ -13,9 +12,7 @@ export default function Jobstatus() {
     interview: 0,
     declined: 0,
   });
-
-  const [cookies] = useCookies();
-  const token = cookies.user.token;
+  const token = localStorage.getItem("token");
 
   const data = [
     {
@@ -59,7 +56,7 @@ export default function Jobstatus() {
   }, [res]);
 
   return (
-    <ul className="relative flex w-full flex-wrap justify-center gap-4 px-4">
+    <ul className="relative flex flex-wrap justify-center w-full gap-4 px-4">
       {data.map((item, i) => (
         <li
           key={i}
@@ -73,7 +70,7 @@ export default function Jobstatus() {
               <div className="text-3xl">{item.icon}</div>
             </div>
           </div>
-          <div className="flex w-full justify-start pl-8">
+          <div className="flex justify-start w-full pl-8">
             <h2 className="text-xl">{item.text}</h2>
           </div>
         </li>

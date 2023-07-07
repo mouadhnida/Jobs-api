@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useAxios = (configParams) => {
-  axios.defaults.baseURL = "api/v1";
   const [res, setRes] = useState("");
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(true);
