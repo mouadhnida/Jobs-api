@@ -38,7 +38,7 @@ export default function Chart() {
   }, [res]);
 
   return (
-    <div className="relative flex flex-col items-center justify-around w-full gap-10 pt-20">
+    <div className="relative flex w-full flex-col items-center justify-around gap-10 pt-20">
       <div className="flex flex-col items-center gap-3">
         <p className="text-2xl">Monthly Applications</p>
         <button className="text-xl text-main" onClick={handleClick}>

@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000)
+    }, 100);
   }, []);
 
   if (loading) {
