@@ -5,8 +5,6 @@ import useAxios from "../hooks/useAxios";
 
 export default function SearchForm() {
   const [filter, setFilter] = useFilter();
-  const [data, setData] = useState({});
-  const token = localStorage.getItem("token");
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -15,28 +13,6 @@ export default function SearchForm() {
       [e.target.name]: [e.target.value],
     });
   };
-
-  useEffect(() => {
-    const getJobs = async () => {
-      const res = await axios.get(
-        `/jobs?search=${filter.search}&status=${filter.status}&jobType=${filter.jobType}&sort=${filter.sort}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (res && res.data) {
-        setData({
-          jobs: res.data?.jobs,
-          totalJobs: res.data?.totalJobs,
-          numOfPages: res.data?.numOfPages,
-        });
-      }
-    };
-    getJobs();
-  }, [filter]);
-  console.log(data);
 
   return (
     <div className="flex min-h-[18rem] w-11/12 flex-col gap-8 rounded bg-white p-9 shadow-md">
