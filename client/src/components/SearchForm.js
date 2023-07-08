@@ -1,6 +1,43 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useFilter } from "../context/FilterProvider";
+import useAxios from "../hooks/useAxios";
 
 export default function SearchForm() {
+  const [filter, setFilter] = useFilter();
+  const [data, setData] = useState({});
+  const token = localStorage.getItem("token");
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setFilter({
+      ...filter,
+      [e.target.name]: [e.target.value],
+    });
+  };
+
+  useEffect(() => {
+    const getJobs = async () => {
+      const res = await axios.get(
+        `/jobs?search=${filter.search}&status=${filter.status}&jobType=${filter.jobType}&sort=${filter.sort}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (res && res.data) {
+        setData({
+          jobs: res.data?.jobs,
+          totalJobs: res.data?.totalJobs,
+          numOfPages: res.data?.numOfPages,
+        });
+      }
+    };
+    getJobs();
+  }, [filter]);
+  console.log(data);
+
   return (
     <div className="flex min-h-[18rem] w-11/12 flex-col gap-8 rounded bg-white p-9 shadow-md">
       <div className="text-2xl">Search From</div>
@@ -10,9 +47,10 @@ export default function SearchForm() {
           <input
             id="search"
             name="search"
-            value=""
             type="text"
             className="h-8 rounded border border-slate-300 bg-slate-100"
+            onChange={handleChange}
+            value={filter.search}
           />
         </div>
         <div className="h-18 flex min-w-[9rem] flex-col gap-3">
@@ -20,8 +58,9 @@ export default function SearchForm() {
           <select
             name="status"
             id="status"
-            defaultValue="all"
             className="h-8 border border-slate-300 bg-slate-100"
+            onChange={handleChange}
+            value={filter.status}
           >
             <option value="all">all</option>
             <option value="interview">interview</option>
@@ -34,8 +73,9 @@ export default function SearchForm() {
           <select
             name="jobType"
             id="jobType"
-            defaultValue="all"
             className="h-8 border border-slate-300 bg-slate-100"
+            onChange={handleChange}
+            value={filter.jobType}
           >
             <option value="all">all</option>
             <option value="full-time">full-time</option>
@@ -49,8 +89,9 @@ export default function SearchForm() {
           <select
             name="sort"
             id="sort"
-            defaultValue="latest"
             className="h-8 border border-slate-300 bg-slate-100"
+            onChange={handleChange}
+            value={filter.sort}
           >
             <option value="latest">latest</option>
             <option value="oldest">oldest</option>

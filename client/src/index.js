@@ -4,14 +4,17 @@ import "./assets/index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import MenuProvider from "./context/MenuProvider";
+import FilterProvider from "./context/FilterProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <MenuProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <FilterProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </FilterProvider>
     </MenuProvider>
   </React.StrictMode>
 );
