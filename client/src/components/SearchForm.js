@@ -76,7 +76,7 @@ export default function SearchForm() {
           </select>
         </div>
         <div className="h-18 flex w-full items-end justify-center">
-          <button className="h-8 w-full rounded bg-red-100 text-red-900 transition-all duration-300 hover:bg-red-900 hover:text-white">
+          <button className="h-8 w-full rounded bg-red-100 text-red-900 drop-shadow transition-all duration-300 hover:bg-red-900 hover:text-white">
             Clear Filters
           </button>
         </div>
