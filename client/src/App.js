@@ -7,6 +7,7 @@ import {
   AddJob,
   Profile,
   SharedLayout,
+  UpdateJob,
 } from "./pages/dashboard";
 
 axios.defaults.baseURL = "api/v1";
@@ -24,6 +25,7 @@ function App() {
       >
         <Route index element={<Stats />} />
         <Route path="all-jobs" element={<AllJobs />} />
+        <Route path="all-jobs/:id" element={<UpdateJob />} />
         <Route path="add-job" element={<AddJob />} />
         <Route path="profile" element={<Profile />} />
       </Route>

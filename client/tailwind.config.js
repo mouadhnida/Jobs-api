@@ -27,6 +27,8 @@ module.exports = {
 
         "m-2xl": { max: "1535px" },
         // => @media (max-width: 1536px) { ... }
+        "m-2lg": { max: "1149px", min: "1024px" },
+        // => @media (max-width: 1149px) { ... }
       },
     },
   },
