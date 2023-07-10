@@ -46,7 +46,7 @@ export default function JobsContainer() {
 
   const handleDelete = async (jobId) => {
     try {
-      await axios.delete(`/jobs/${jobId}`, {
+      await axios.delete(`https://jobhub-juyq.onrender.com/api/v1/jobs/${jobId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
