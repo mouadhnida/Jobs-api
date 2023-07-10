@@ -24,7 +24,7 @@ export default function Chart() {
     setBarChart(!barChart);
   };
   const [res] = useAxios({
-    url: "https://jobhub-juyq.onrender.com/api/v1jobs/stats",
+    url: "https://jobhub-juyq.onrender.com/api/v1/jobs/stats",
     method: "get",
     headers: {
       Authorization: `Bearer ${token}`,
