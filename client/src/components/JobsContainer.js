@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useFilter } from "../context/FilterProvider";
 import axios from "axios";
 import Job from "./Job";
+import Pagination from "./Pagination";
 
 export default function JobsContainer() {
   const [filter, setFilter] = useFilter();
   const [data, setData] = useState();
+  const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
+
   useEffect(() => {
     getJobs();
-  }, [filter]);
+  }, [filter, pageNum]);
 
   const getJobs = async () => {
     try {
       const res = await axios.get(
-        `/jobs?search=${filter.search}&status=${filter.status}&jobType=${filter.jobType}&sort=${filter.sort}`,
+        `/jobs?search=${filter.search}&status=${filter.status}&jobType=${filter.jobType}&sort=${filter.sort}&page=${pageNum}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,6 +53,12 @@ export default function JobsContainer() {
     }
   };
 
+  const changePage = (e) => {
+    e.preventDefault();
+    const nextPage = parseInt(e.target.value);
+    setPageNum(Math.min(nextPage, data.numOfPages));
+  };
+
   return (
     <div className="w-11/12">
       {loading ? (
@@ -62,6 +71,11 @@ export default function JobsContainer() {
               return <Job job={job} key={job._id} onDelete={handleDelete} />;
             })}
           </ul>
+          <Pagination
+            numOfPages={data?.numOfPages}
+            changePage={changePage}
+            pageNum={pageNum}
+          />
         </div>
       )}
     </div>
