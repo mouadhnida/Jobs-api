@@ -10,7 +10,7 @@ import {
   UpdateJob,
 } from "./pages/dashboard";
 
-axios.defaults.baseURL = "api/v1";
+axios.defaults.baseURL = "http://localhost:3000/api/v1";
 
 function App() {
   return (

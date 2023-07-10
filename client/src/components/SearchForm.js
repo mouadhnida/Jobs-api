@@ -24,7 +24,7 @@ export default function SearchForm() {
             id="search"
             name="search"
             type="text"
-            className="h-8 rounded border border-slate-300 bg-slate-100"
+            className="h-8 rounded border border-slate-300 bg-slate-100 pl-2"
             onChange={handleChange}
             value={filter.search}
           />

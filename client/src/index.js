@@ -5,6 +5,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import MenuProvider from "./context/MenuProvider";
 import FilterProvider from "./context/FilterProvider";
+import { ToastContainer } from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,6 +14,7 @@ root.render(
       <FilterProvider>
         <BrowserRouter>
           <App />
+          <ToastContainer />
         </BrowserRouter>
       </FilterProvider>
     </MenuProvider>

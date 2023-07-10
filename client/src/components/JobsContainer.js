@@ -6,7 +6,7 @@ import Job from "./Job";
 export default function JobsContainer() {
   const [filter, setFilter] = useFilter();
   const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
   useEffect(() => {
     getJobs();
@@ -29,13 +29,10 @@ export default function JobsContainer() {
           numOfPages: res.data?.numOfPages,
         });
       }
-      setLoading(true);
     } catch (error) {
       console.error(error);
     } finally {
-      setTimeout(() => {
-        setLoading(false);
-      }, 100);
+      setTimeout(() => setLoading(false), 1000);
     }
   };
 
@@ -55,13 +52,18 @@ export default function JobsContainer() {
 
   return (
     <div className="w-11/12">
-      {loading && <p>loading...</p>}
-      <div className="text-xl font-bold">{data?.totalJobs} Jobs Found</div>
-      <ul className="grid grid-cols-2 gap-4 m-lg:grid-cols-1">
-        {data?.jobs.map((job) => {
-          return <Job job={job} key={job._id} onDelete={handleDelete} />;
-        })}
-      </ul>
+      {loading ? (
+        <p>loading...</p>
+      ) : (
+        <div>
+          <div className="text-xl font-bold">{data?.totalJobs} Jobs Found</div>
+          <ul className="grid grid-cols-2 gap-4 m-lg:grid-cols-1">
+            {data?.jobs.map((job) => {
+              return <Job job={job} key={job._id} onDelete={handleDelete} />;
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
