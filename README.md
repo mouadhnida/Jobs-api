@@ -24,7 +24,7 @@ JobHub is a web application that helps job seekers manage their job applications
 
 ## Website
 
-For more information and to experience JobHub, please visit [jobhub-delta.vercel.app]([https://www.yourwebsite.com](https://jobhub-delta.vercel.app)).
+For more information and to experience JobHub, please visit [https://jobhub-delta.vercel.app](https://jobhub-delta.vercel.app).
 
 ## Contributions
 
