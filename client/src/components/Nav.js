@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUserCircle, FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useMenu } from "../context/MenuProvider";
 import { FaAlignLeft } from "react-icons/fa";
 import LogoutButton from "./LogoutButton";
+import { useName } from "../context/NameProvider";
 
 function Nav() {
   const [isDropDown, setDropDown] = useState(false);
+  const [name, setName] = useName();
   const [menu, setMenu] = useMenu();
   const navigate = useNavigate();
 
@@ -17,11 +19,12 @@ function Nav() {
     setMenu(!menu);
   };
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     navigate("/landing");
   };
+
   return (
     <div className="fixed z-40 col-span-12 flex h-24 w-full items-center justify-between border border-b-slate-300 bg-white px-8 m-sm:px-2">
       <input
@@ -51,7 +54,7 @@ function Nav() {
           onClick={handleDropDown}
           className="flex h-8 w-44 items-center justify-around rounded-md border bg-main text-base text-white shadow-md hover:bg-main2"
         >
-          {<FaUserCircle />} {localStorage.getItem("name")}
+          {<FaUserCircle />} {name}
           {<FaCaretDown />}
         </button>
         {isDropDown && <LogoutButton onClick={handleLogout} />}

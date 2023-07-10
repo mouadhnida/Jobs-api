@@ -43,8 +43,8 @@ const login = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { email, name, lastName, location } = req.body;
-  if (!email || !name || !lastName || !location) {
-    throw new BadRequest("Please provide all values");
+  if (!email || !name || !lastName) {
+    throw new BadRequestError("Please provide all values");
   }
   const user = await User.findOne({ _id: req.user.userId });
 
@@ -59,9 +59,21 @@ const updateUser = async (req, res) => {
     user: {
       email: user.email,
       lastName: user.lastName,
-      location: user.location,
+      location: user?.location,
       name: user.name,
       token,
+    },
+  });
+};
+
+const getUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user.userId });
+  res.status(StatusCodes.OK).json({
+    user: {
+      email: user.email,
+      lastName: user.lastName,
+      location: user.location,
+      name: user.name,
     },
   });
 };
@@ -70,4 +82,5 @@ module.exports = {
   register,
   login,
   updateUser,
+  getUser,
 };

@@ -23,6 +23,7 @@ export default function AddJobForm({
               className="h-8 rounded border border-slate-300 bg-slate-100 pl-2"
               value={job?.position}
               onChange={handleChange}
+              maxLength={30}
             />
           </div>
           <div className="h-18 flex min-w-[9rem] flex-col gap-3">
@@ -34,6 +35,7 @@ export default function AddJobForm({
               className="h-8 rounded border border-slate-300 bg-slate-100 pl-2"
               value={job?.company}
               onChange={handleChange}
+              maxLength={30}
             />
           </div>
           <div className="h-18 flex min-w-[9rem] flex-col gap-3">
@@ -45,6 +47,7 @@ export default function AddJobForm({
               onChange={handleChange}
               value={job?.jobLocation}
               className="h-8 rounded border border-slate-300 bg-slate-100 pl-2"
+              maxLength={30}
             />
           </div>
           <div className="h-18 flex min-w-[9rem] flex-col gap-3">

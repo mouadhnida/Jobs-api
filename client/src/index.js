@@ -6,16 +6,19 @@ import { BrowserRouter } from "react-router-dom";
 import MenuProvider from "./context/MenuProvider";
 import FilterProvider from "./context/FilterProvider";
 import { ToastContainer } from "react-toastify";
+import NameProvider from "./context/NameProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <MenuProvider>
       <FilterProvider>
-        <BrowserRouter>
-          <App />
-          <ToastContainer />
-        </BrowserRouter>
+        <NameProvider>
+          <BrowserRouter>
+            <App />
+            <ToastContainer />
+          </BrowserRouter>
+        </NameProvider>
       </FilterProvider>
     </MenuProvider>
   </React.StrictMode>
