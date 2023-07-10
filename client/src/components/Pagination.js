@@ -17,8 +17,10 @@ export default function Pagination({ numOfPages, changePage, pageNum }) {
             <button
               onClick={changePage}
               value={index + 1}
-              className={`flex h-10 w-12 items-center justify-center rounded bg-main text-white ${
-                index === pageNum - 1 ? "bg-opacity-100" : "bg-opacity-10"
+              className={`flex h-10 w-12 items-center justify-center rounded bg-main  ${
+                index === pageNum - 1
+                  ? "bg-opacity-100 text-white"
+                  : "bg-opacity-30 text-main"
               }`}
             >
               {index + 1}

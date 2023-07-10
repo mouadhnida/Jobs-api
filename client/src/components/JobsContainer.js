@@ -55,8 +55,11 @@ export default function JobsContainer() {
 
   const changePage = (e) => {
     e.preventDefault();
-    const nextPage = parseInt(e.target.value);
-    setPageNum(Math.min(nextPage, data.numOfPages));
+    setTimeout(() => {
+      setLoading(true);
+      const nextPage = parseInt(e.target.value);
+      setPageNum(Math.min(nextPage, data.numOfPages));
+    }, 100);
   };
 
   return (
