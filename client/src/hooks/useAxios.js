@@ -18,6 +18,7 @@ const useAxios = (configParams) => {
       }
     };
     fetchDataUsingAxios(configParams);
+    // eslint-disable-next-line
   }, []);
 
   return [res, err, loading];

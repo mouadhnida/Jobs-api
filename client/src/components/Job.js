@@ -5,8 +5,6 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 export default function Job({ job, onDelete }) {
-  const token = localStorage.getItem("token");
-
   const handleDelete = () => {
     onDelete(job._id);
   };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaUserCircle, FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useMenu } from "../context/MenuProvider";
@@ -8,7 +8,7 @@ import { useName } from "../context/NameProvider";
 
 function Nav() {
   const [isDropDown, setDropDown] = useState(false);
-  const [name, setName] = useName();
+  const [name] = useName();
   const [menu, setMenu] = useMenu();
   const navigate = useNavigate();
 

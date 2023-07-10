@@ -5,6 +5,7 @@ import ProfileForm from "../../components/ProfileForm";
 import { useName } from "../../context/NameProvider";
 
 function Profile() {
+  // eslint-disable-next-line
   const [name, setName] = useName();
   const [user, setUser] = useState({
     name: "",

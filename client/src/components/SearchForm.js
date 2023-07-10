@@ -1,7 +1,5 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useFilter } from "../context/FilterProvider";
-import useAxios from "../hooks/useAxios";
 
 export default function SearchForm() {
   const [filter, setFilter] = useFilter();

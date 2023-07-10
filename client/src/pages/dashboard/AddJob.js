@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import AddJobForm from "../../components/AddJobForm";
-import useAxios from "../../hooks/useAxios";
 
 export default function AddJob() {
   const navigate = useNavigate();
@@ -82,7 +81,7 @@ export default function AddJob() {
     if (newJob) {
       setTimeout(() => navigate("/all-jobs"), 1000);
     }
-  }, [newJob]);
+  }, [newJob, navigate]);
 
   return (
     <div>

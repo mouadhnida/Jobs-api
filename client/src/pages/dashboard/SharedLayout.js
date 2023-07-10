@@ -6,7 +6,7 @@ import Nav from "../../components/Nav";
 import Sidebar from "../../components/Sidebar";
 
 function SharedLayout() {
-  const [menu, setMenu] = useMenu();
+  const [menu] = useMenu();
   return (
     <div className="relative grid h-screen w-full grid-cols-[250px_1fr] grid-rows-[96px_1fr]">
       <div className="col-span-10">

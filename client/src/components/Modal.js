@@ -7,6 +7,7 @@ import { BiAddToQueue } from "react-icons/bi";
 import { ImProfile } from "react-icons/im";
 
 export default function Modal() {
+  // eslint-disable-next-line
   const [menu, setMenu] = useMenu();
   const location = useLocation();
   const lis = [

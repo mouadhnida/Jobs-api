@@ -5,7 +5,7 @@ import Job from "./Job";
 import Pagination from "./Pagination";
 
 export default function JobsContainer() {
-  const [filter, setFilter] = useFilter();
+  const [filter] = useFilter();
   const [data, setData] = useState();
   const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -13,9 +13,11 @@ export default function JobsContainer() {
 
   useEffect(() => {
     getJobs();
+    // eslint-disable-next-line
   }, [filter, pageNum]);
 
   const getJobs = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(
         `/jobs?search=${filter.search}&status=${filter.status}&jobType=${filter.jobType}&sort=${filter.sort}&page=${pageNum}`,
@@ -31,11 +33,14 @@ export default function JobsContainer() {
           totalJobs: res.data?.totalJobs,
           numOfPages: res.data?.numOfPages,
         });
+        setPageNum((prevPageNum) =>
+          Math.min(prevPageNum, res.data?.numOfPages)
+        );
       }
     } catch (error) {
       console.error(error);
     } finally {
-      setTimeout(() => setLoading(false), 1000);
+      setTimeout(() => setLoading(false), 100);
     }
   };
 
@@ -56,9 +61,8 @@ export default function JobsContainer() {
   const changePage = (e) => {
     e.preventDefault();
     setTimeout(() => {
-      setLoading(true);
-      const nextPage = parseInt(e.target.value);
-      setPageNum(Math.min(nextPage, data.numOfPages));
+      setPageNum(Number(e.target.value));
+      console.log(pageNum);
     }, 100);
   };
 

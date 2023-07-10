@@ -97,7 +97,7 @@ export default function UpdateJob() {
     if (updatedJob) {
       setTimeout(() => navigate("/all-jobs"), 1000);
     }
-  }, [updatedJob]);
+  }, [updatedJob, navigate]);
 
   return (
     <div>
