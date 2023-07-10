@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useName } from "../context/NameProvider"
 
 function Register() {
+  const [name, setName] = useName()
   const [inputs, setInputs] = useState({});
   const [isLogin, setLogin] = useState(true);
   const [user, setUser] = useState(null);
@@ -53,6 +55,7 @@ function Register() {
         const name = response.data?.user.name;
         localStorage.setItem("token", token);
         localStorage.setItem("name", name);
+        setName(localStorage.getItem("name"))
       } else {
         // Register
         const response = await axios.post("/auth/register", inputs);
@@ -61,6 +64,7 @@ function Register() {
         const name = response.data?.user.name;
         localStorage.setItem("token", token);
         localStorage.setItem("name", name);
+        setName(localStorage.getItem("name"))
       }
       const notify = () => {
         toast.success("sucessful", {
@@ -107,52 +111,53 @@ function Register() {
   }, [user]);
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center bg-slate-100 px-5">
+    <div className="flex items-center justify-center w-full min-h-screen px-5 bg-slate-100">
       <div
         className={`flex w-[400px] ${
           isLogin ? "h-[500px]" : "h-[550px]"
         } flex-col items-center rounded-[4px] border-t-[5px] border-t-main bg-white p-10 drop-shadow-md`}
       >
-        <div className="col-span-10 flex items-center font-Inter text-2xl font-bold">
-          <span className="w-12 rounded-lg bg-main text-center text-5xl text-white">
+        <div className="flex items-center col-span-10 text-2xl font-bold font-Inter">
+          <span className="w-12 text-5xl text-center text-white rounded-lg bg-main">
             J
           </span>
           <h1 className="pl-4 tracking-widest text-main">JobHub</h1>
         </div>
-        <p className="py-7 text-3xl">{isLogin ? "Login" : "Register"}</p>
+        <p className="text-3xl py-7">{isLogin ? "Login" : "Register"}</p>
         <form className="w-full" onSubmit={handleSubmit}>
           {!isLogin && (
-            <div className="flex w-full flex-col justify-between pb-5">
+            <div className="flex flex-col justify-between w-full pb-5">
               <label htmlFor="name">Name</label>
               <input
                 onChange={handleChange}
                 type="text"
                 id="name"
-                className="h-8 w-full rounded-md border border-slate-300 bg-slate-100 pl-2"
+                className="w-full h-8 pl-2 border rounded-md border-slate-300 bg-slate-100"
+                maxLength={15}
               />
             </div>
           )}
-          <div className="flex w-full flex-col justify-between pb-5">
+          <div className="flex flex-col justify-between w-full pb-5">
             <label htmlFor="email">Email</label>
             <input
               onChange={handleChange}
               type="email"
               id="email"
-              className="h-8 w-full rounded-md border border-slate-300 bg-slate-100 pl-2"
+              className="w-full h-8 pl-2 border rounded-md border-slate-300 bg-slate-100"
             />
           </div>
-          <div className="flex w-full flex-col justify-between pb-7">
+          <div className="flex flex-col justify-between w-full pb-7">
             <label htmlFor="password">Password</label>
             <input
               onChange={handleChange}
               type="password"
               id="password"
-              className="h-8 w-full rounded-md border border-slate-300 bg-slate-100 pl-2"
+              className="w-full h-8 pl-2 border rounded-md border-slate-300 bg-slate-100"
             />
           </div>
           <button
             type="submit"
-            className="flex h-10 w-full items-center justify-around rounded-md border bg-main text-xl text-white drop-shadow-md hover:bg-main2"
+            className="flex items-center justify-around w-full h-10 text-xl text-white border rounded-md bg-main drop-shadow-md hover:bg-main2"
           >
             {isLoading ? "Loading..." : "Submit"}
           </button>

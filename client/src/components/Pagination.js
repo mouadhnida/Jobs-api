@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Pagination({ numOfPages, changePage, pageNum }) {
   return (
-    <div className="flex h-10 justify-end gap-3 pt-14">
+    <div className="flex justify-end h-10 gap-3 pt-14">
       <button
-        className="flex h-10 w-24 items-center justify-center rounded-sm bg-white text-main hover:bg-main hover:text-white"
+        className="flex items-center justify-center w-24 h-10 bg-white rounded-sm text-main hover:bg-main hover:text-white"
         value={pageNum - 1 || 1}
         onClick={changePage}
       >
@@ -14,7 +14,7 @@ export default function Pagination({ numOfPages, changePage, pageNum }) {
       <ul className="flex">
         {Array.from({ length: numOfPages }, (_, index) => (
           <li key={index} className="">
-            <button
+            {pageNum > 0 ? <button
               onClick={changePage}
               value={index + 1}
               className={`flex h-10 w-12 items-center justify-center rounded bg-main  ${
@@ -24,12 +24,12 @@ export default function Pagination({ numOfPages, changePage, pageNum }) {
               }`}
             >
               {index + 1}
-            </button>
+            </button> : null}
           </li>
         ))}
       </ul>
       <button
-        className="flex h-10 w-24 items-center justify-center rounded-sm bg-white text-main hover:bg-main hover:text-white"
+        className="flex items-center justify-center w-24 h-10 bg-white rounded-sm text-main hover:bg-main hover:text-white"
         value={pageNum + 1}
         onClick={changePage}
       >
