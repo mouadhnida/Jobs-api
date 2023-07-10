@@ -20,7 +20,7 @@ export default function JobsContainer() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `/jobs?search=${filter.search}&status=${filter.status}&jobType=${filter.jobType}&sort=${filter.sort}&page=${pageNum}`,
+        `https://jobhub-juyq.onrender.com/jobs?search=${filter.search}&status=${filter.status}&jobType=${filter.jobType}&sort=${filter.sort}&page=${pageNum}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

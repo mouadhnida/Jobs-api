@@ -46,7 +46,7 @@ function Register() {
       }, 2000);
       if (isLogin) {
         // Login
-        const response = await axios.post("/auth/login", {
+        const response = await axios.post("https://jobhub-juyq.onrender.com/auth/login", {
           email: inputs.email,
           password: inputs.password,
         });
@@ -58,7 +58,7 @@ function Register() {
         setName(localStorage.getItem("name"))
       } else {
         // Register
-        const response = await axios.post("/auth/register", inputs);
+        const response = await axios.post("https://jobhub-juyq.onrender.com/auth/register", inputs);
         setUser(response.data.user);
         const token = response.data?.user.token;
         const name = response.data?.user.name;
