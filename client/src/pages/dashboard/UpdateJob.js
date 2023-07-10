@@ -20,7 +20,7 @@ export default function UpdateJob() {
   const token = localStorage.getItem("token");
 
   const [res] = useAxios({
-    url: `https://jobhub-juyq.onrender.com/jobs/${id}`,
+    url: `https://jobhub-juyq.onrender.com/api/v1jobs/${id}`,
     method: "get",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ export default function UpdateJob() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.patch(`https://jobhub-juyq.onrender.com/jobs/${id}`, job, {
+      const res = await axios.patch(`https://jobhub-juyq.onrender.com/api/v1jobs/${id}`, job, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

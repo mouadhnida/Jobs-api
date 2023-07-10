@@ -36,7 +36,7 @@ export default function AddJob() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`https://jobhub-juyq.onrender.com/jobs`, job, {
+      const res = await axios.post(`https://jobhub-juyq.onrender.com/api/v1/jobs`, job, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

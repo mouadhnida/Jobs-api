@@ -18,7 +18,7 @@ function Profile() {
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get("https://jobhub-juyq.onrender.com/auth/profile", {
+      const res = await axios.get("https://jobhub-juyq.onrender.com/api/v1/auth/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +39,7 @@ function Profile() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.patch(`https://jobhub-juyq.onrender.com/auth/updateUser`, user, {
+      const res = await axios.patch(`https://jobhub-juyq.onrender.com/api/v1/auth/updateUser`, user, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

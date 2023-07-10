@@ -42,7 +42,7 @@ export default function Jobstatus() {
   ];
 
   const [res] = useAxios({
-    url: "https://jobhub-juyq.onrender.com/jobs/stats",
+    url: "https://jobhub-juyq.onrender.com/api/v1jobs/stats",
     method: "get",
     headers: {
       Authorization: `Bearer ${token}`,
