@@ -1,6 +1,6 @@
 # JobHub
 
-JobHub is a web application that helps job seekers manage their job applications and explore job opportunities. It provides a platform for users to track their job applications, store relevant information, and stay organized throughout the job search process.
+JobHub is a web application that helps job seekers manage their job applications . It provides a platform for users to track their job applications, and stay organized throughout the job search process.
 
 ## Features
 
