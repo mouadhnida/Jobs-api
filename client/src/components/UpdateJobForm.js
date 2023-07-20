@@ -9,7 +9,7 @@ export default function UpdateJobForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="my-12 flex flex-col items-center gap-16"
+      className="flex flex-col items-center gap-16 my-12"
     >
       <div className="flex min-h-[18rem] w-11/12 flex-col gap-8 rounded bg-white p-9 shadow-md">
         <div className="text-4xl">Edit Job</div>
@@ -20,7 +20,7 @@ export default function UpdateJobForm({
               id="position"
               name="position"
               type="text"
-              className="h-8 rounded border border-slate-300 bg-slate-100 pl-2"
+              className="h-8 pl-2 border rounded border-slate-300 bg-slate-100"
               defaultValue={job?.position}
               onChange={handleChange}
               maxLength={30}
@@ -32,7 +32,7 @@ export default function UpdateJobForm({
               id="company"
               name="company"
               type="text"
-              className="h-8 rounded border border-slate-300 bg-slate-100 pl-2"
+              className="h-8 pl-2 border rounded border-slate-300 bg-slate-100"
               value={job?.company}
               onChange={handleChange}
               maxLength={30}
@@ -46,7 +46,7 @@ export default function UpdateJobForm({
               type="text"
               onChange={handleChange}
               value={job?.jobLocation}
-              className="h-8 rounded border border-slate-300 bg-slate-100 pl-2"
+              className="h-8 pl-2 border rounded border-slate-300 bg-slate-100"
               maxLength={30}
             />
           </div>
@@ -75,11 +75,11 @@ export default function UpdateJobForm({
             >
               <option value="full-time">full-time</option>
               <option value="part-time">part-time</option>
-              <option value="pending">pending</option>
+
               <option value="internship">internship</option>
             </select>
           </div>
-          <div className="h-18 flex w-full items-end justify-between">
+          <div className="flex items-end justify-between w-full h-18">
             <button
               type="submit"
               className=" h-8 w-[48%] rounded bg-main text-white shadow drop-shadow-md transition-all duration-300 hover:bg-main2"
