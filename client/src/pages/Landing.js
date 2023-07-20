@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { ReactComponent as JobHunt } from "../assets/images/job-hunt.svg";
+import { ReactComponent as JobHunt } from "../assets/images/job-hunt1.svg";
 
 function Landing() {
   return (
     <div className="grid min-h-screen  w-full grid-cols-2 grid-rows-[86px_1fr] bg-slate-100 pb-5 pl-12">
-      <div className="col-span-10 flex w-full items-center font-Inter text-2xl font-bold">
-        <span className="w-12 rounded-lg bg-main text-center text-5xl text-white">
+      <div className="flex items-center w-full col-span-10 text-2xl font-bold font-Inter">
+        <span className="w-12 text-5xl text-center text-white rounded-lg bg-main">
           J
         </span>
         <h1 className="pl-4 tracking-widest text-main">JobHub</h1>
@@ -23,12 +23,12 @@ function Landing() {
           Job Hub, you'll never miss a step in your career journey. Take control
           of your job search and land your dream job today.
         </p>
-        <button className="flex h-10 w-44 items-center justify-around rounded-md border bg-main text-xl text-white drop-shadow-md hover:bg-main2">
+        <button className="flex items-center justify-around h-10 text-xl text-white border rounded-md w-44 bg-main drop-shadow-md hover:bg-main2">
           <Link to="/register">Login/Register</Link>
         </button>
       </div>
-      <div className="flex justify-center  m-lg:hidden">
-        <JobHunt className="h-auto w-2/3 " />
+      <div className="flex justify-center m-lg:hidden">
+        <JobHunt className="w-2/3 h-auto " />
       </div>
     </div>
   );
